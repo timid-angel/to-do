@@ -1,10 +1,12 @@
 import { checkboxFunctionality } from "./checkbox.js";
+import { deleteItem } from "./delete.js";
 const inputEl = document.getElementById("addItem");
 const buttonEl = document.querySelector(".home__infield-button");
 const listEl = document.querySelector(".display__list");
 const errMsg = document.querySelector('.error');
 const successMsg = document.querySelector('.success');
 const sysError = document.querySelector('.systemError');
+const empty = document.querySelector('.empty');
 
 function displayError() {
     errMsg.classList.remove("hidden");
@@ -56,25 +58,35 @@ function addItem(str) {
     listEl.append(divItem);
 
     checkboxFunctionality(checkBox, pItem);
+    if (!empty.classList.contains('hidden')) {
+        empty.classList.add('hidden');
+    }
+
+    const icon = divItem.lastChild.firstChild.firstChild;
+    icon.addEventListener('click', () => {
+        deleteItem(divItem);
+    })
+
 
     return divItem;
 }
 
-buttonEl.addEventListener('click', () => {
+function addItemEventHandler() {
     if (inputEl.value.length < 1) {
         displayError();
         return;
     }
-
+    const inputContent = inputEl.value;
+    inputEl.value = "";
     const lastChild = document.querySelector('.display__item:last-child');
-    const divItem = addItem(inputEl.value);
-    const idN = Number(lastChild.dataset.id) + 1;
+    const divItem = addItem(inputContent);
+    const idN = lastChild === null ? Math.random() * 1000 + 400 : Number(lastChild.dataset.id) + 1;
     divItem.dataset.id = idN;
 
     const todoMain = {
         userId: 1,
         id: idN,
-        title: inputEl.value,
+        title: inputContent,
         completed: false
     };
 
@@ -95,7 +107,14 @@ buttonEl.addEventListener('click', () => {
             console.log(err);
             displaySystemError();
         })
+}
 
+buttonEl.addEventListener('click', addItemEventHandler);
+inputEl.addEventListener('keypress', (event) => {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        buttonEl.click();
+    }
 })
 
 export { addItem };

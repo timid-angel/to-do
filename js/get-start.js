@@ -20,7 +20,6 @@ fetch(url).then((response) => {
             checkBox.classList.add('display__item-checkbox--checked');
             pItem.classList.add('display__item-p--checked');
         }
-
     });
 })
 
