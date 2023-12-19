@@ -17,9 +17,9 @@
         <section id="inputDiv" class="home__infield">
             <div class="infield__container">
                 <div class="home__infield-bar">
-                    <input id="search" name="search" type="text" class="home__input">
+                    <input id="addItem" name="search" type="text" class="home__input">
                 </div>
-                <div class="home__infield-button">
+                <div class=" home__infield-button">
                     <img src="images/add.png" alt="An add button" width="70" height="70" class="home__button">
                 </div>
             </div>
@@ -28,9 +28,9 @@
         <section id="displaySec" class="home__display">
             <div class="display__container">
                 <div class="display__list">
-                    <div class="display__item">
+                    <!-- <div class="display__item">
                         <div class="display__item-checkboxDiv">
-                            <div class="display__item-checkbox display__item-checkbox--checked"></div>
+                            <div class="display__item-checkbox"></div>
                         </div>
                         <div class="display__item-pDiv">
                             <p class="display__item-p">
@@ -44,18 +44,30 @@
                                     class="display__item-trashPic">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
     </main>
+    <div class="popup error hidden">
+        <p class="error__p">Please enter a data in the field</p>
+    </div>
+
+    <div class="popup systemError hidden">
+        <p class="error__p">System Error</p>
+    </div>
+
+    <div class="popup success hidden">
+        <p class="popup__p">Post Added</p>
+    </div>
 
     <footer class="footer">
-        <p class="footer__p">N.M.Sd</p>
+        <p class="footer__p">N.M.S</p>
     </footer>
 
-    <!-- <script src="js/index.js"></script> -->
-    <script src="js/checkbox.js"></script>
+    <script src="js/checkbox.js" type="module"></script>
+    <script src="js/post.js" type="module"></script>
+    <script src="js/get-start.js" type="module"></script>
 </body>
 
 </html>

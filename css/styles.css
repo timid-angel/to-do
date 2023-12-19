@@ -88,6 +88,7 @@
 
 .home__display {
     height: 67.5vh;
+    overflow-y: scroll;
 }
 
 .display__container {
@@ -171,6 +172,11 @@
     /* background-color: magenta; */
 }
 
+.display__item-p--checked {
+    text-decoration: line-through;
+    color: rgb(133, 133, 133);
+}
+
 .display__item-trash {
     position: absolute;
     top: 50%;
@@ -187,6 +193,30 @@
 
 .display__item-trashPic:hover {
     animation: trashHover 0.8s ease-in-out;
+}
+
+/* popups */
+
+.popup {
+    position: absolute;
+    top: 82.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1.3rem;
+    border-radius: 15px;
+    color: whitesmoke;
+}
+
+.error {
+    background-color: crimson;
+}
+
+.success {
+    background-color: green;
+}
+
+.hidden {
+    display: none;
 }
 
 /* footer */
