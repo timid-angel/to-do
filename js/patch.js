@@ -6,7 +6,24 @@ function checkboxFunctionality(checkbox, pEl) {
             pEl.classList.add('display__item-p--checked');
         }
         checkbox.classList.toggle('display__item-checkbox--checked');
+        const itemEl = checkbox.parentNode.parentNode;
+        const newValue = checkbox.classList.contains('display__item-checkbox--checked');
+        const url = 'https://jsonplaceholder.typicode.com/posts/' + itemEl.dataset.id;
+
+        fetch(url, {
+            method: 'PATCH',
+            body: JSON.stringify({
+                completed: newValue
+            }),
+            headers: { 'Content-type': 'application/json; charset=UTF-8' }
+        })
+            .then((response) => response.json())
+            .then((json) => console.log(json));
     })
+    const pArea = checkbox.parentNode.parentNode.firstChild.nextSibling;
+    pArea.addEventListener('click', () => {
+        checkbox.click();
+    });
 }
 
 function addCheckboxListener() {

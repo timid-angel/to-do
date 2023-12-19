@@ -1,4 +1,4 @@
-import { checkboxFunctionality } from "./checkbox.js";
+import { checkboxFunctionality } from "./patch.js";
 import { deleteItem } from "./delete.js";
 const inputEl = document.getElementById("addItem");
 const buttonEl = document.querySelector(".home__infield-button");
@@ -7,6 +7,7 @@ const errMsg = document.querySelector('.error');
 const successMsg = document.querySelector('.success');
 const sysError = document.querySelector('.systemError');
 const empty = document.querySelector('.empty');
+const displaySec = document.querySelector('.display__container');
 
 function displayError() {
     errMsg.classList.remove("hidden");
@@ -58,6 +59,7 @@ function addItem(str) {
     listEl.append(divItem);
 
     checkboxFunctionality(checkBox, pItem);
+    displaySec.hidden = false;
     if (!empty.classList.contains('hidden')) {
         empty.classList.add('hidden');
     }
@@ -66,7 +68,6 @@ function addItem(str) {
     icon.addEventListener('click', () => {
         deleteItem(divItem);
     })
-
 
     return divItem;
 }
@@ -80,11 +81,11 @@ function addItemEventHandler() {
     inputEl.value = "";
     const lastChild = document.querySelector('.display__item:last-child');
     const divItem = addItem(inputContent);
-    const idN = lastChild === null ? Math.random() * 1000 + 400 : Number(lastChild.dataset.id) + 1;
+    const idN = lastChild === null ? 201 : Number(lastChild.dataset.id) + 1;
     divItem.dataset.id = idN;
 
     const todoMain = {
-        userId: 1,
+        userId: 2,
         id: idN,
         title: inputContent,
         completed: false
